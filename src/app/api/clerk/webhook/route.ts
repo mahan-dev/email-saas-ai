@@ -3,8 +3,7 @@ import { db } from "@/server/db";
 export async function POST(req: Request) {
   const { data } = await req.json();
 
-  const emailAddress = data.email_addresses?.[0]?.email_address;
-
+  const emailAddress = data.email_addresses?.[0]?.email_address ?? "";
 
   await db.user.create({
     data: {
