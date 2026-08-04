@@ -8,7 +8,7 @@ const PUBLIC_URL = process.env.NEXT_PUBLIC_URL as string;
 export const getAurinkoAuthUrl = async (
   serviceType: "Google" | "office365",
 ) => {
-  const [userId] = await auth();
+  const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
   const params = new URLSearchParams({
