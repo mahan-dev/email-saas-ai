@@ -169,8 +169,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String  @id @default(cuid())\n  emailAddress String  @unique\n  firstName    String\n  lastName     String\n  imageUrl     String?\n}\n",
-  "inlineSchemaHash": "c8e0b39698f60383007b4671b38e2d9918553d5cb46dfdf7e8a5a6a18cf23a19",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String  @id @default(cuid())\n  emailAddress String  @unique\n  firstName    String\n  lastName     String\n  imageUrl     String?\n}\n",
+  "inlineSchemaHash": "25cf5cc3a261b67293e9ebcbe48c43c6740f892ca4a3417d8c4f41f6f44d6cf2",
   "copyEngine": true
 }
 
