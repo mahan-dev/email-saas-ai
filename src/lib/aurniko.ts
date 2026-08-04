@@ -12,7 +12,7 @@ export const getAurinkoAuthUrl = async (
   if (!userId) throw new Error("Unauthorized");
 
   const params = new URLSearchParams({
-    client_id: CLIENT_ID,
+    clientId: CLIENT_ID,
     serviceType,
     scope: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts Mail.All",
     responseType: "code",
