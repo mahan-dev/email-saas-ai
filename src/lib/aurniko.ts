@@ -2,7 +2,6 @@
 
 import { auth } from "@clerk/nextjs/server";
 
-const CLIENT_ID = process.env.AURNIKO_CLIENT_ID as string;
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL as string;
 
 export const getAurinkoAuthUrl = async (
@@ -12,7 +11,7 @@ export const getAurinkoAuthUrl = async (
   if (!userId) throw new Error("Unauthorized");
 
   const params = new URLSearchParams({
-    clientId: CLIENT_ID,
+    clientId: process.env.AURNIKO_CLIENT_ID as string,
     serviceType,
     scope: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts Mail.All",
     responseType: "code",
