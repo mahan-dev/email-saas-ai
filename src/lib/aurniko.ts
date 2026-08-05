@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { auth } from "@clerk/nextjs/server";
 
-
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL as string;
 const CLIENT_ID = process.env.AURINKO_CLIENT_ID as string;
 
@@ -28,8 +27,8 @@ export const getAurinkoAuthUrl = async (
 export const exchangeCodeForAccessToken = async (code: string) => {
   try {
     const res = await axios.post(
-      `https://api.aurinko.io/v1/auth/token/${code}`,
-      {},
+      "https://api.aurinko.io/v1/auth/token",
+      { code },
       {
         auth: {
           username: process.env.AURINKO_CLIENT_ID as string,

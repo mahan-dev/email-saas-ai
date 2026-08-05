@@ -22,6 +22,7 @@ export const GET = async (req: NextRequest) => {
   //   );
 
   const code = params.get("code");
+  console.log("code", code);
   if (!code)
     return NextResponse.json(
       { status: "Failed", error: "No code provided" },
