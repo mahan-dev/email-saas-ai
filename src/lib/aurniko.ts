@@ -1,6 +1,9 @@
 "use server";
 
+import axios from "axios";
+
 import { auth } from "@clerk/nextjs/server";
+
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL as string;
 const CLIENT_ID = process.env.AURINKO_CLIENT_ID as string;
@@ -20,4 +23,55 @@ export const getAurinkoAuthUrl = async (
   });
 
   return `https://api.aurinko.io/v1/auth/authorize?${params.toString()}`;
+};
+
+export const exchangeCodeForAccessToken = async (code: string) => {
+  try {
+    const res = await axios.post(
+      `https://api.aurinko.io/v1/auth/token/${code}`,
+      {},
+      {
+        auth: {
+          username: process.env.AURINKO_CLIENT_ID as string,
+          password: process.env.AURINKO_CLIENT_SECRET as string,
+        },
+      },
+    );
+    return res.data as {
+      accountId: number;
+      accessToken: string;
+      userId: string;
+      userSession: string;
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.error ||
+          "failed to exchange code for access token",
+      );
+    }
+    throw new Error("failed to exchange code for access token");
+  }
+};
+
+export const getAccountDetail = async (accessToken: string) => {
+  try {
+    const response = await axios.get("https://api.aurinko.io/v1/account", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return response.data as {
+      email: string;
+      name: string;
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("error fetching account details", error.response?.data);
+    } else {
+      console.error("unexpected fetching account details", error);
+    }
+    throw error;
+  }
 };
