@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
   const status = params.get("status");
   if (status != "success")
     return NextResponse.json(
-      { status: "Failed", error: "No code provided" },
+      { status: "Failed", error: "status not found" },
       { status: 400 },
     );
 
