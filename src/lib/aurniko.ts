@@ -29,9 +29,9 @@ export const exchangeCodeForAccessToken = async (code: string) => {
 
   try {
     const res = await axios.post(
-      `https://api.aurinko.io/v1/auth/token/`,
+      `https://api.aurinko.io/v1/auth/token/${code}?serviceType=Google`,
 
-      { code },
+      {},
       {
         headers: {
           "Content-Type": "application/json",
