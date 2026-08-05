@@ -16,7 +16,7 @@ export const getAurinkoAuthUrl = async (
   const params = new URLSearchParams({
     clientId: CLIENT_ID,
     serviceType,
-    scope: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts Mail.All",
+    scopes: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts Mail.All",
     responseType: "code",
     returnUrl: `${PUBLIC_URL}/api/aurinko/callback`,
   });
@@ -27,8 +27,8 @@ export const getAurinkoAuthUrl = async (
 export const exchangeCodeForAccessToken = async (code: string) => {
   try {
     const res = await axios.post(
-      "https://api.aurinko.io/v1/auth/token",
-      { code },
+      `https://api.aurinko.io/v1/auth/token/${code}`,
+      {},
       {
         auth: {
           username: process.env.AURINKO_CLIENT_ID as string,
