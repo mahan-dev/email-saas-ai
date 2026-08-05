@@ -53,11 +53,13 @@ export const exchangeCodeForAccessToken = async (code: string) => {
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data?.error ||
-          "failed to exchange code for access token",
+      console.log("Aurinko status", error.response?.status);
+      console.error(
+        "AURINKO DATA:",
+        JSON.stringify(error.response?.data, null, 2),
       );
     }
+    console.log("failed to exchange code for access token");
     throw new Error("failed to exchange code for access token");
   }
 };
