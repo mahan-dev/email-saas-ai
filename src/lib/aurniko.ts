@@ -25,6 +25,7 @@ export const getAurinkoAuthUrl = async (
 };
 
 export const exchangeCodeForAccessToken = async (code: string) => {
+  console.log('this is exchange code ', code)
   try {
     const res = await axios.post(
       `https://api.aurinko.io/v1/auth/token/${code}`,
@@ -52,6 +53,15 @@ export const exchangeCodeForAccessToken = async (code: string) => {
     throw new Error("failed to exchange code for access token");
   }
 };
+console.log('🚤 ~ aurniko.ts:27 ~ export:', export);
+console.log('🚝 ~ aurniko.ts:27 ~ export:', export);
+console.log('🎏 ~ aurniko.ts:27 ~ code:', code);
+console.log('🛤️ ~ aurniko.ts:27 ~ code:', code);
+console.log('🎋 ~ aurniko.ts:27 ~ code:', code);
+console.log('🏆 ~ aurniko.ts:27 ~ code:', code);
+console.log('🛳️ ~ aurniko.ts:27 ~ code:', code);
+console.log('🚡 ~ aurniko.ts:27 ~ code:', code);
+console.log('🎨 ~ aurniko.ts:27 ~ code:', code);
 
 export const getAccountDetail = async (accessToken: string) => {
   try {
