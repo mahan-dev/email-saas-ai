@@ -29,21 +29,15 @@ export const exchangeCodeForAccessToken = async (code: string) => {
 
   try {
     const res = await axios.post(
-      `https://api.aurinko.io/v1/auth/token/${code}`,
-      null,
+      `https://api.aurinko.io/v1/auth/token/`,
+
+      { code },
       {
         auth: {
           username: process.env.AURINKO_CLIENT_ID as string,
           password: process.env.AURINKO_CLIENT_SECRET as string,
         },
       },
-      // {},
-      // {
-      //   auth: {
-      //     username: process.env.AURINKO_CLIENT_ID as string,
-      //     password: process.env.AURINKO_CLIENT_SECRET as string,
-      //   },
-      // },
     );
     return res.data as {
       accountId: number;
