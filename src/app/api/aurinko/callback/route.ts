@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const { userId } = await auth();
+  console.log(userId);
 
   if (!userId)
     return NextResponse.json(
@@ -13,12 +14,12 @@ export const GET = async (req: NextRequest) => {
     );
 
   const params = req.nextUrl.searchParams;
-  const status = params.get("status");
-  if (status != "success")
-    return NextResponse.json(
-      { status: "Failed", error: "status not found" },
-      { status: 400 },
-    );
+  // const status = params.get("status");
+  // if (status != "success")
+  //   return NextResponse.json(
+  //     { status: "Failed", error: "status not found" },
+  //     { status: 400 },
+  //   );
 
   const code = params.get("code");
   if (!code)
