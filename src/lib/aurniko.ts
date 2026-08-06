@@ -22,7 +22,7 @@ export const getAurinkoAuthUrl = async (
   });
   console.log("🛸 ~ aurniko.ts:21 ~ PUBLIC_URL:", PUBLIC_URL);
 
-  return `https://api.aurinko.io/v1/auth/authorize?${params.toString()}`;
+  return `https://api.aurinko.io/v1/auth/authorize?${params}`;
 };
 
 export const exchangeCodeForAccessToken = async (code: string) => {
