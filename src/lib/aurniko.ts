@@ -16,7 +16,7 @@ export const getAurinkoAuthUrl = async (
   const params = new URLSearchParams({
     clientId: CLIENT_ID,
     serviceType,
-    scopes: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts Mail.All",
+    scopes: "Mail.Read Mail.ReadWrite Mail.Send Mail.Drafts",
     responseType: "code",
     returnUrl: `${PUBLIC_URL}/api/aurinko/callback`,
   });
