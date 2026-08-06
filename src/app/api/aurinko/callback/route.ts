@@ -29,6 +29,10 @@ export const GET = async (req: NextRequest) => {
       { status: 400 },
     );
 
+  console.log("FULL CALLBACK URL:", req.url);
+  console.log("STATUS:", params.get("status"));
+  console.log("CODE:", params.get("code"));
+  console.log("ALL PARAMS:", Object.fromEntries(params.entries()));
   const token = await exchangeCodeForAccessToken(code);
   if (!token)
     return NextResponse.json(
