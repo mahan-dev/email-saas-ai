@@ -38,8 +38,8 @@ export const exchangeCodeForAccessToken = async (code: string) => {
           "Content-Type": "application/json",
         },
         auth: {
-          username: process.env.AURINKO_CLIENT_ID!,
-          password: process.env.AURINKO_CLIENT_SECRET!,
+          username: process.env.AURINKO_CLIENT_ID as string,
+          password: process.env.AURINKO_CLIENT_SECRET as string,
         },
       },
     );
