@@ -20,6 +20,7 @@ export const getAurinkoAuthUrl = async (
     responseType: "code",
     returnUrl: `${PUBLIC_URL}/api/aurinko/callback`,
   });
+  console.log("🛸 ~ aurniko.ts:21 ~ PUBLIC_URL:", PUBLIC_URL);
 
   return `https://api.aurinko.io/v1/auth/authorize?${params.toString()}`;
 };
@@ -29,7 +30,7 @@ export const exchangeCodeForAccessToken = async (code: string) => {
 
   try {
     const res = await axios.post(
-      `https://api.aurinko.io/v1/auth/token/${code}?serviceType=Google`,
+      `https://api.aurinko.io/v1/auth/token/${code}`,
 
       {},
       {
@@ -37,8 +38,8 @@ export const exchangeCodeForAccessToken = async (code: string) => {
           "Content-Type": "application/json",
         },
         auth: {
-          username: process.env.AURINKO_CLIENT_ID as string,
-          password: process.env.AURINKO_CLIENT_SECRET as string,
+          username: process.env.AURINKO_CLIENT_ID!,
+          password: process.env.AURINKO_CLIENT_SECRET!,
         },
       },
     );
