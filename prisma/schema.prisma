@@ -18,10 +18,20 @@ model User {
 }
 
 model Account {
-  id           String @id @default(cuid())
-  userId       String
-  token        String @unique
+  id       String @id @default(cuid())
+  userId   String
+  provider String
+
   emailAddress String
   name         String
-  user         User   @relation(fields: [userId], references: [id])
+
+  accessToken  String @unique
+  refreshToken String
+
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([provider, emailAddress])
 }
